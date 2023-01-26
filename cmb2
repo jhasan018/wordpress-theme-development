@@ -1,0 +1,43 @@
+<?php
+add_action('cmb2_admin_init','work_cmb2_function'); //'work_cmb2_function' is user defined
+/**
+ * Define the metabox and field configurations.
+ */
+function work_cmb2_function(){
+	/**
+	 * Initiate the metabox
+	 */
+	$neuron_opt = new_cmb2_box(array(
+        'title' =>esc_html__( 'Post', 'cmb2' ),
+        'id'    => 'work_opt',
+        'object_types' => array('work') //defining the Page name
+    )); 
+   /**
+	 * $neuron_opt is user defined
+	 */
+	$work_group_id = $neuron_opt->add_field( array(
+		'id'          => 'work_group',
+		'type'        => 'group',
+		'repeatable'  => true,
+		'options'     => array(
+			'group_title'   => 'Work Information {#}', 
+			'add_button'    => 'Add Another Information',
+			'remove_button' => 'Remove Information',
+			'closed'        => true,  // Repeater fields closed by default.
+			'sortable'      => true,  // for sorting the group.
+		),
+	) );
+	$neuron_opt->add_group_field( $work_group_id, array(
+		'name' => 'Information Title',
+		'id'   => 'title',
+		'type' => 'text',
+	) );
+	$neuron_opt->add_group_field( $work_group_id, array(
+		'name' => 'Information value',
+		'id'   => 'value',
+		'type' => 'text',
+	) );
+}
+
+?>
+
