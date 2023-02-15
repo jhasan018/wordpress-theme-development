@@ -1,0 +1,22 @@
+//add class in submenu using walker
+
+//add this on your functions.php
+
+class My_Walker_Nav_Menu extends Walker_Nav_Menu {   
+    function start_lvl(&$output, $depth = 0, $args = Array() ) {     
+    $indent = str_repeat("\t", $depth);    
+     $output .= "\n$indent<ul class=\"child-here\">\n";   } }
+     
+     
+ // then declare walker in your menu
+ 
+ wp_nav_menu(array(
+             'theme_location' => 'menu-1', //menu name
+             'menu_class' => 'mymenu',       //menu main class                         
+              'walker' => new My_Walker_Nav_Menu(), 
+               ));
+                            
+     
+     
+     
+     
