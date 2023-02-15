@@ -1,43 +1,73 @@
-<?php
-add_action('cmb2_admin_init','work_cmb2_function'); //'work_cmb2_function' is user defined
-/**
- * Define the metabox and field configurations.
- */
-function work_cmb2_function(){
-	/**
-	 * Initiate the metabox
-	 */
-	$neuron_opt = new_cmb2_box(array(
-        'title' =>esc_html__( 'Post', 'cmb2' ),
-        'id'    => 'work_opt',
-        'object_types' => array('work') //defining the Page name
-    )); 
-   /**
-	 * $neuron_opt is user defined
-	 */
-	$work_group_id = $neuron_opt->add_field( array(
-		'id'          => 'work_group',
-		'type'        => 'group',
-		'repeatable'  => true,
-		'options'     => array(
-			'group_title'   => 'Work Information {#}', 
-			'add_button'    => 'Add Another Information',
-			'remove_button' => 'Remove Information',
-			'closed'        => true,  // Repeater fields closed by default.
-			'sortable'      => true,  // for sorting the group.
-		),
-	) );
-	$neuron_opt->add_group_field( $work_group_id, array(
-		'name' => 'Information Title',
-		'id'   => 'title',
-		'type' => 'text',
-	) );
-	$neuron_opt->add_group_field( $work_group_id, array(
-		'name' => 'Information value',
-		'id'   => 'value',
-		'type' => 'text',
-	) );
-}
+<?php 
 
+add_action('cmb2_admin_init', 'cmb2_sample_metaboxes');
+
+
+function cmb2_sample_metaboxes(){
+
+$facility_banner_meta_box = new_cmb2_box(array(
+    'id' => 'facility_banner',
+    'title' => 'Banner',
+    'context' => 'normal',
+    'object_types' => array('page'), // Post type
+    'show_on' => array('key' => 'page-template', 'value' => 'template/template_facility.php'),
+    'priority' => 'high',
+    'show_names' => true, // Show field names on the left
+    'closed' => true,
+));
+
+$facility_banner_meta_box -> add_field(array(
+    'name' => 'Title',
+    'id' => 'facility_banner_title',
+    'type' => 'text',
+));
+
+$facility_banner_meta_box -> add_field(array(
+    'name' => 'Image',
+    'id' => 'facility_banner_img',
+    'type' => 'file',
+));
+
+$facility_bead_meta_box = new_cmb2_box(array(
+    'id' => 'facility_bead',
+    'title' => 'Facility Bead ',
+    'context' => 'normal',
+    'object_types' => array('page'), // Post type
+    'show_on' => array('key' => 'page-template', 'value' => 'template/template_facility.php'),
+    'priority' => 'high',
+    'show_names' => true, // Show field names on the left
+    'closed' => true,
+));
+
+$facility_bead_group = $facility_bead_meta_box -> add_field(array(
+    'id' => 'facility_bead_group',
+    'type' => 'group',
+    'repeatable'  => true, // use false if you want non-repeatable group
+    'options' => array(
+        'group_title' => __('Facility Bead {#}', 'cmb2'), // since version 1.1.4, {#} gets replaced by row number
+        'add_button' => __('Add Another Entry', 'cmb2'),
+        'remove_button' => __('Remove Entry', 'cmb2'),
+        'sortable' => true,
+        // 'closed'         => true, // true to have the groups closed by default
+        // 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'cmb2' ), // Performs confirmation before removing group.
+    ),
+));
+
+$facility_bead_meta_box->add_group_field($facility_bead_group, array(
+    'name' => 'Title',
+    'id'   => 'facility_bead_title',
+    'type' => 'text',
+));
+$facility_bead_meta_box->add_group_field($facility_bead_group, array(
+    'name' => 'Description',
+    'id'   => 'facility_bead_desc',
+    'type' => 'textarea',
+));
+
+$facility_bead_meta_box->add_group_field($facility_bead_group, array(
+    'name' => 'Image',
+    'id'   => 'facility_bead_img',
+    'type' => 'file',
+));
 ?>
 
