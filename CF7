@@ -1,0 +1,140 @@
+/* Make a form in Contact Form 7 */
+
+<div class="row">
+    <div class="col-md-12">
+       <h1 class="text-center"> Contact Us </h1>
+    </div>
+</div>
+<div class="row form">
+    <div class="col-md-4">
+      <label> First Name: </label>
+      [text text-367 class:form-control]
+    </div>
+    <div class="col-md-4">
+       <label> Last Name: </label>
+      [text text-368 class:form-control]
+    </div>
+    <div class="col-md-4">
+      <label> Nick Name: </label>
+      [text text-369 class:form-control]
+    </div>
+</div>
+<div class="row form">
+    <div class="col-md-3">
+      <label> Email: </label>
+      [email email-664 class:form-control]
+    </div>
+    <div class="col-md-3">
+      <label> Phone Number: </label>
+      [phonetext phonetext-839 class:form-control]
+    </div>
+    <div class="col-md-3">
+      <label> Country: </label>
+      [countrytext countrytext-314 class:form-control]
+    </div>
+    <div class="col-md-3">
+      <label> Subject: </label>
+      [text text-370 class:form-control]
+    </div>
+</div>
+<div class="row form">
+    <div class="col-md-12">
+      <label> Message: </label>
+      [textarea textarea-387 class:form-control]
+     </div>
+</div>
+<div class="row form">
+    <div class="col-md-4">
+      <label> Your Image: </label>
+      <label for="files" class="btn btn-success custom_button">Upload Image</label>
+      [file file-5 limit:25000 filetypes:jpg|jpeg|png id:files class:form_file]
+     </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 submit_button">
+          <button type="submit" class="btn btn-primary mb-2">Submit</button>
+    </div>
+</div>
+
+
+
+/* Add Css */
+
+.form{
+	width: 100% !important;
+}
+.submit_button{
+	display: flex;
+	justify-content: center;
+}
+
+.submit_button button{
+	width: 200px;
+	/* margin-top: 15px; */
+	transition: 0.5s;
+}
+
+.submit_button button:hover{
+	transform: scale(1.10);
+}
+
+.form_file{
+	border:none;
+	width: 150px;
+	height: 50px;
+	cursor: none;
+	border-radius: 5px 5px 5px 5px;
+	/* display: none !important; */
+}
+.form_file:focus-visible {
+  border: 3px red !important;
+}
+.form_file::file-selector-button {
+  /* background-color: #f8a100;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  width: 250px; */
+  display: none;
+}
+.wpcf7 input[type="file"]{
+	cursor: default !important;
+}
+.wpcf7 input[type="file"]:focus{
+	/* background: red; */
+	outline: none;
+}
+
+.form label{
+	font-size: 18px;
+	font-weight: 500;
+	color: #43545e;
+}
+label.btn.btn-success.custom_button{
+	color: white !important;
+	letter-spacing: normal;
+}
+
+.wpcf7-response-output{
+	display: flex;
+	justify-content: center;
+}
+
+.selected-flag{
+	background-color: #ebebeb !important;
+}
+
+/* Mail Setting to show in Mail */
+
+From: [text-367][text-368][text-369] <[email-664]>
+Subject: [text-370]
+Phone: <[phonetext-839]>
+Country: [countrytext-314]
+
+Message Body:
+[textarea-387]
+
+-- 
+This e-mail was sent from a contact form on [_site_title] ([_site_url])
