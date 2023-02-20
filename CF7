@@ -138,3 +138,49 @@ Message Body:
 
 -- 
 This e-mail was sent from a contact form on [_site_title] ([_site_url])
+
+
+/* To display file name in upload or choose button */
+/* Add this HTML */
+<div class="row form">
+    <div class="col-md-4">
+     <div class="form_upload">
+      <input type="file" name="GlobalSettings[files]" class="dynamic_upload_file_cv DcFile" selectedfile="Upload Image">
+     </div>
+    </div>
+</div>
+
+/*CSS*/
+.form_upload input {
+    margin-right: 30px;
+    position: relative;
+    width: 200px;
+    height: 50px
+}
+
+.form_upload input::after{
+	content: attr(selectedfile);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    color: #fff;
+    text-align: center;
+    background: #313131;
+    border: 1px solid #CECECE;
+    line-height: 50px;
+    font-size: 14px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+*/JQuery */
+jQuery(document).ready(function() {
+	jQuery('.form_upload input[type="file"]').change(function(e) {
+	var fileName = e.target.files[0].name;
+	jQuery('.form_upload input[type="file"]').attr("selectedfile", fileName);
+         console.log(fileName);
+	});
+});
